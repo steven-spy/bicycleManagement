@@ -4,18 +4,63 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.software.bicycle.dao.mapper.BicycleModelMapper">
     <resultMap id="BaseResultMap" type="com.software.bicycle.dao.model.BicycleModel">
-        <id column="bicycle_id" jdbcType="BIGINT" property="bicycleId"/>
-        <result column="bicycle_name" jdbcType="VARCHAR" property="bicycleName"/>
-        <result column="bicycle_state" jdbcType="BOOLEAN" property="bicycleState"/>
+        <id column="bi_id" jdbcType="BIGINT" property="biId"/>
+        <result column="bi_name" jdbcType="VARCHAR" property="biName"/>
+        <result column="bi_state" jdbcType="BOOLEAN" property="biState"/>
         <result column="lease_state" jdbcType="BOOLEAN" property="leaseState"/>
-        <result column="bicycle_mainTain" jdbcType="BOOLEAN" property="bicycleMainTain"/>
-        <result column="bicycle_point" jdbcType="VARCHAR" property="bicyclePoint"/>
+        <result column="bi_main_tain" jdbcType="BOOLEAN" property="biCycleMainTain"/>
+        <result column="bi_point" jdbcType="VARCHAR" property="biPoint"/>
+        <result column="bi_jd" jdbcType="VARCHAR" property="biJd"/>
+        <result column="bi_wd" jdbcType="VARCHAR" property="biWd"/>
     </resultMap>
+
+    <sql id="columns">
+        bi_id,bi_name,bi_point,lease_state,bi_state,bi_main_tain,bi_jd,bi_wd
+    </sql>
+    <insert id="addBicycle">
+        insert into bicyclemanagement.bicycle
+        (bi_name, bi_state, lease_state, bi_point, bi_main_tain, bi_jd, bi_wd)
+        values (#{biName} ,#{biState}, #{leaseState}, #{biPoint}, #{biCycleMainTain}, #{biJd}, #{biWd})
+    </insert>
+
     <!--获取自行车数量-->
     <select id="getBicycleCount" resultType="java.lang.Integer">
-         select
-        count (*)
-        from bicycle.bicycle;
+        select
+        count(*)
+        from bicyclemanagement.bicycle;
     </select>
 
+    <select id="getAllWithPaging" resultType="com.software.bicycle.dao.model.BicycleModel" resultMap="BaseResultMap">
+        select
+        <include refid="columns"/>
+        from bicyclemanagement.bicycle order by bi_id
+        limit #{pageSize} offset #{pageIndex};
+    </select>
+
+    <select id="searchBicycleByName" resultType="com.software.bicycle.dao.model.BicycleModel"
+            resultMap="BaseResultMap">
+        select
+        <include refid="columns"/>
+        from bicyclemanagement.bicycle
+        where bi_name like '%${biName,jdbcType=VARCHAR}%';
+    </select>
+
+    <select id="getAllWithCondition" resultType="com.software.bicycle.dao.model.BicycleModel"
+            resultMap="BaseResultMap">
+        select
+        <include refid="columns"/>
+        from bicyclemanagement.bicycle
+        where bi_state = false
+    </select>
+
+    <update id="repairBicycle" parameterType="java.lang.Integer">
+        update bicyclemanagement.bicycle set
+        bi_state = true
+        where bi_id = #{biId,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteBicycleById" parameterType="java.lang.Integer">
+        delete from bicyclemanagement.bicycle
+        where bi_id = #{biId,jdbcType=BIGINT}
+    </delete>
 </mapper>

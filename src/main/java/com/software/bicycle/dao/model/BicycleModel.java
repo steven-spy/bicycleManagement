@@ -5,19 +5,37 @@ package com.software.bicycle.dao.model;
  * @create 2021/3/31 11:55
  */
 public class BicycleModel {
-    private int bicycleId;
-    private String bicycleName;
-    private boolean bicycleState;
+    private int biId;
+    private String biName;
+    private String biPoint;
+    private boolean biState;
     private boolean leaseState;
-    private String bicyclePoint;
-    private boolean bicycleMainTain;
+    private boolean biCycleMainTain;
+    private String biJd;
+    private String biWd;
 
-    public boolean isBicycleMainTain() {
-        return bicycleMainTain;
+    public int getBiId() {
+        return biId;
     }
 
-    public void setBicycleMainTain(boolean bicycleMainTain) {
-        this.bicycleMainTain = bicycleMainTain;
+    public void setBiId(int biId) {
+        this.biId = biId;
+    }
+
+    public String getBiName() {
+        return biName;
+    }
+
+    public void setBiName(String biName) {
+        this.biName = biName;
+    }
+
+    public boolean isBiState() {
+        return biState;
+    }
+
+    public void setBiState(boolean biState) {
+        this.biState = biState;
     }
 
     public boolean isLeaseState() {
@@ -28,35 +46,35 @@ public class BicycleModel {
         this.leaseState = leaseState;
     }
 
-    public String getBicyclePoint() {
-        return bicyclePoint;
+    public String getBiPoint() {
+        return biPoint;
     }
 
-    public void setBicyclePoint(String bicyclePoint) {
-        this.bicyclePoint = bicyclePoint;
+    public void setBiPoint(String biPoint) {
+        this.biPoint = biPoint;
     }
 
-    public int getBicycleId() {
-        return bicycleId;
+    public boolean isBiCycleMainTain() {
+        return biCycleMainTain;
     }
 
-    public void setBicycleId(int bicycleId) {
-        this.bicycleId = bicycleId;
+    public void setBiCycleMainTain(boolean biCycleMainTain) {
+        this.biCycleMainTain = biCycleMainTain;
     }
 
-    public String getBicycleName() {
-        return bicycleName;
+    public String getBiJd() {
+        return biJd;
     }
 
-    public void setBicycleName(String bicycleName) {
-        this.bicycleName = bicycleName;
+    public void setBiJd(String biJd) {
+        this.biJd = biJd;
     }
 
-    public boolean isBicycleState() {
-        return bicycleState;
+    public String getBiWd() {
+        return biWd;
     }
 
-    public void setBicycleState(boolean bicycleState) {
-        this.bicycleState = bicycleState;
+    public void setBiWd(String biWd) {
+        this.biWd = biWd;
     }
 }

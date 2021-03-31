@@ -6,43 +6,43 @@
         <result column="lp_name" jdbcType="VARCHAR" property="lpName"/>
         <result column="lp_jd" jdbcType="VARCHAR" property="lpJd"/>
         <result column="lp_wd" jdbcType="VARCHAR" property="lpWd"/>
-        <result column="lp_biNumber" jdbcType="BIGINT" property="lpBiNumber"/>
+        <result column="lp_bi_number" jdbcType="BIGINT" property="lpBiNumber"/>
         <result column="lp_leaser" jdbcType="BIGINT" property="lpLeaser"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-    lp_id, lp_name, lp_jd, lp_wd, lp_biNumber, lp_leaser
+    lp_id, lp_name, lp_jd, lp_wd, lp_bi_number, lp_leaser
     </sql>
 
     <select id="getAll" resultType="com.software.bicycle.dao.model.LeasePointModel" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from management.leasepoint
+        from bicycleManagement.leasepoint
     </select>
 
     <select id="searchLeasePointByName" resultType="com.software.bicycle.dao.model.LeasePointModel"
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from management.leasepoint
+        from bicycleManagement.leasepoint
         where lp_name like '%${lpName,jdbcType=VARCHAR}%';
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from "leasePointModel"
+    delete from bicycleManagement.leasepoint
     where lp_id = #{lpId,jdbcType=BIGINT}
     </delete>
 
 
     <insert id="insert" parameterType="com.software.bicycle.dao.model.LeasePointModel">
-    insert into "leasePointModel" (lp_name, lp_jd, lp_wd,
+    insert into bicycleManagement.leasepoint (lp_name, lp_jd, lp_wd,
       lp_binumber, lp_leaser)
     values (#{lpName,jdbcType=VARCHAR}, #{lpJd,jdbcType=VARCHAR}, #{lpWd,jdbcType=VARCHAR}, 
       #{lpBinumber,jdbcType=BIGINT}, #{lpLeaser,jdbcType=BIGINT})
     </insert>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.software.bicycle.dao.model.LeasePointModel">
-        update "leasePointModel"
+        update bicycleManagement.leasepoint
         <set>
             <if test="lpName != null">
                 lp_name = #{lpName,jdbcType=VARCHAR},

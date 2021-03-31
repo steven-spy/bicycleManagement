@@ -3,28 +3,28 @@
 <mapper namespace="com.software.bicycle.dao.mapper.BicycleTrackModelMapper">
     <resultMap id="BaseResultMap" type="com.software.bicycle.dao.model.BicycleTrackModel">
         <id column="bt_id" jdbcType="BIGINT" property="btId"/>
-        <result column="bt_bicycleName" jdbcType="VARCHAR" property="btBicycleName"/>
-        <result column="bt_orJd" jdbcType="BIGINT" property="btOrJd"/>
-        <result column="bt_orWd" jdbcType="VARCHAR" property="btOrWd"/>
-        <result column="bt_prJd" jdbcType="VARCHAR" property="btPrJd"/>
-        <result column="bt_prWd" jdbcType="VARCHAR" property="btPrWd"/>
+        <result column="bt_bicycle_name" jdbcType="VARCHAR" property="btBicycleName"/>
+        <result column="bt_or_jd" jdbcType="VARCHAR" property="btOrJd"/>
+        <result column="bt_or_wd" jdbcType="VARCHAR" property="btOrWd"/>
+        <result column="bt_pr_jd" jdbcType="VARCHAR" property="btPrJd"/>
+        <result column="bt_pr_wd" jdbcType="VARCHAR" property="btPrWd"/>
     </resultMap>
 
     <sql id="columns">
-        bt_id,bt_bicycleName,bt_orJd,bt_orWd,bt_prJd,bt_prWd
+        bt_id,bt_bicycle_name,bt_or_jd,bt_or_wd,bt_pr_jd,bt_pr_wd
     </sql>
 
     <select id="getAll" resultType="com.software.bicycle.dao.model.BicycleTrackModel" resultMap="BaseResultMap">
         select
         <include refid="columns"/>
-        from management.bicycleTrack;
+        from bicycleManagement.bicycleTrack;
     </select>
 
     <select id="getAppointBicycleTrack" resultType="com.software.bicycle.dao.model.BicycleTrackModel"
             resultMap="BaseResultMap">
         select
         <include refid="columns"/>
-        from management.bicycleTrack
-        where bt_bicycleName = #{btBicycleName, jdbcType=VARCHAR};
+        from bicycleManagement.bicycleTrack
+        where bt_bicycle_name = #{btBicycleName, jdbcType=VARCHAR};
     </select>
 </mapper>

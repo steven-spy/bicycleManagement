@@ -17,6 +17,6 @@
     <select id="getAll" resultType="com.software.bicycle.dao.model.UserModel" resultMap="BaseResultMap">
         select
         <include refid="columns"/>
-        from management.user;
+        from bicycleManagement.user;
     </select>
 </mapper>
