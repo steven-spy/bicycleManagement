@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.software.bicycle.dao.mapper.UserModelMapper">
+    <resultMap id="BaseResultMap" type="com.software.bicycle.dao.model.UserModel">
+        <id column="u_id" jdbcType="BIGINT" property="uId"/>
+        <result column="u_name" jdbcType="VARCHAR" property="uName"/>
+        <result column="u_age" jdbcType="BIGINT" property="uAge"/>
+        <result column="u_sex" jdbcType="VARCHAR" property="uSex"/>
+        <result column="u_phone" jdbcType="VARCHAR" property="uPhone"/>
+        <result column="u_card" jdbcType="VARCHAR" property="uCard"/>
+    </resultMap>
+
+    <sql id="columns">
+        u_id,u_name,u_age,u_sex,u_phone,u_card
+    </sql>
+
+    <select id="getAll" resultType="com.software.bicycle.dao.model.UserModel" resultMap="BaseResultMap">
+        select
+        <include refid="columns"/>
+        from management.user;
+    </select>
+</mapper>

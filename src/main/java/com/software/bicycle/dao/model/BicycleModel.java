@@ -1,5 +1,9 @@
 package com.software.bicycle.dao.model;
 
+/**
+ * @author Steven
+ * @create 2021/3/31 11:55
+ */
 public class BicycleModel {
     private int bicycleId;
     private String bicycleName;

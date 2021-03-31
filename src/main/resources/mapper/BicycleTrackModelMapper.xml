@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.software.bicycle.dao.mapper.BicycleTrackModelMapper">
+    <resultMap id="BaseResultMap" type="com.software.bicycle.dao.model.BicycleTrackModel">
+        <id column="bt_id" jdbcType="BIGINT" property="btId"/>
+        <result column="bt_bicycleName" jdbcType="VARCHAR" property="btBicycleName"/>
+        <result column="bt_orJd" jdbcType="BIGINT" property="btOrJd"/>
+        <result column="bt_orWd" jdbcType="VARCHAR" property="btOrWd"/>
+        <result column="bt_prJd" jdbcType="VARCHAR" property="btPrJd"/>
+        <result column="bt_prWd" jdbcType="VARCHAR" property="btPrWd"/>
+    </resultMap>
+
+    <sql id="columns">
+        bt_id,bt_bicycleName,bt_orJd,bt_orWd,bt_prJd,bt_prWd
+    </sql>
+
+    <select id="getAll" resultType="com.software.bicycle.dao.model.BicycleTrackModel" resultMap="BaseResultMap">
+        select
+        <include refid="columns"/>
+        from management.bicycleTrack;
+    </select>
+
+    <select id="getAppointBicycleTrack" resultType="com.software.bicycle.dao.model.BicycleTrackModel"
+            resultMap="BaseResultMap">
+        select
+        <include refid="columns"/>
+        from management.bicycleTrack
+        where bt_bicycleName = #{btBicycleName, jdbcType=VARCHAR};
+    </select>
+</mapper>
