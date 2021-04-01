@@ -9,12 +9,21 @@ import {BicycleTrackService} from "../Service/bicycleTrack.service";
 import {LeasePointService} from "../Service/lease-point.service";
 import {BicycleInformationService} from "../Service/bicycleInformation.service";
 import { BicycleInformationComponent } from './bicycle-information/bicycle-information.component';
+import { LeasePointComponent } from './lease-point/lease-point.component';
+import {NzGridModule} from "ng-zorro-antd/grid";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {IconsProviderModule} from "../icons-provider.module";
+import {NzTableModule} from "ng-zorro-antd/table";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
+import {NzDividerModule} from "ng-zorro-antd/divider";
 
 
 @NgModule({
   declarations: [
     MainComponent,
-    BicycleInformationComponent
+    BicycleInformationComponent,
+    LeasePointComponent
   ],
   providers: [UserService, BicycleTrackService, BicycleInformationService, LeasePointService],
   imports: [
@@ -22,7 +31,14 @@ import { BicycleInformationComponent } from './bicycle-information/bicycle-infor
     NzButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    MainRoutingModule
+    MainRoutingModule,
+    NzGridModule,
+    NzInputModule,
+    IconsProviderModule,
+    NzTableModule,
+    NzDrawerModule,
+    NzDescriptionsModule,
+    NzDividerModule
   ]
 })
 export class MainModule { }

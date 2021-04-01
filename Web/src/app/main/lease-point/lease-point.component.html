@@ -1,0 +1,71 @@
+<div nz-row nzJustify="space-between">
+  <div nz-col nzSpan="6" nzOffset="1">
+    租赁点：
+    <nz-input-group [nzSuffix]="inputClearTpl" style="width: 150px">
+      <input nzSize="large" type="text" nz-input [(ngModel)]="inputValue" placeholder="自行车编号" style="width: 150px"/>
+    </nz-input-group>
+    <ng-template #inputClearTpl>
+      <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+         (click)="inputClick()"></i
+      ></ng-template>
+  </div>
+  <div nz-col nzSpan="6" nzOffset="11">
+    <button class="addButton" nz-button nzSize="large" nzType="primary"
+            (click)="searchLeasePoint()"
+            [disabled]="inputValue === undefined || inputValue === null || inputValue === ''">
+      搜索自行车
+    </button>
+    &nbsp;
+    <button class="addButton" nz-button nzSize="large" nzType="primary"
+            (click)="addLeasePoint()">
+      添加租赁点
+    </button>
+  </div>
+</div>
+<br/>
+<nz-table #Table [nzData]="listOfDisplayData" nzBordered [(nzPageSize)]="pageSize" [nzLoading]="loading"
+          [nzShowPagination]="false">
+  <thead>
+  <tr>
+    <th class="tr">租赁点</th>
+    <th class="tr">自行车数量</th>
+    <th class="tr">管理员数量</th>
+    <th class="tr">操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of Table.data">
+    <td class="tr">{{ data.lpName }}</td>
+    <td class="tr">{{ data.lpBiNumber }}</td>
+    <td class="tr">{{ data.lpLeaser }}</td>
+    <td>
+      <div class="button">
+        <button nz-button (click)="deleteLeasePoint(data)" [disabled]="data.leaseState === '租赁中'">
+          <i nz-icon nzType="delete" nzTheme="twotone"></i>删除
+        </button>
+        <button nz-button (click)="updateLeasePoint(data)"
+                [disabled]="data.leaseState === '租赁中' || data.bicycleState === '无法使用' || data.bicycleMainTain === '维修中'">
+          <i nz-icon nzType="edit" nzTheme="twotone"></i>更改
+        </button>
+        <button nz-button (click)="open(data)">
+          <i nz-icon nzType="edit" nzTheme="twotone"></i>查看
+        </button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<nz-drawer [nzVisible]="visible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close()">
+  <nz-descriptions [nzColumn]="2" nzTitle="详细信息">
+    <nz-descriptions-item nzTitle="自行车编号" [nzSpan]="1">{{lpBiNumber}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="所在租赁点" [nzSpan]="1">{{lpName}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="自行车租赁状态" [nzSpan]="1">123456</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="当前所在经度" [nzSpan]="1">{{lpJd}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="当前所在纬度" [nzSpan]="1">{{lpWd}}</nz-descriptions-item>
+  </nz-descriptions>
+  <nz-divider></nz-divider>
+  <div id="map" style="width:100%;height: 60%"></div>
+</nz-drawer>
+<!--<nz-modal [(nzVisible)]="isVisible" nzTitle="请注意" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">-->
+<!--  是否删除自行车名为"{{name}}",状态为"{{state}}"这条数据？-->
+<!--</nz-modal>-->
