@@ -5,11 +5,11 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/welcome'
+    redirectTo: '/main'
   },
   {
-    path: 'welcome',
-    loadChildren: './pages/welcome/welcome.module#WelcomeModule'
+    path: 'main',
+    loadChildren: './main/main.module#MainModule'
   }
 ];
 

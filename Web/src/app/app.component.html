@@ -7,21 +7,25 @@
             [nzTrigger]="null">
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Ant Design Of Angular</h1>
+        <img src="/assets/img/自行车1.jpg" alt="logo">
+        <h1>Bicycle Management</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
+          <li nz-submenu nzTitle="主信息">
+            <ul>
+              <li nz-menu-item nzMatchRouter>
+                <a routerLink="/main/bicycleInformation">车辆信息</a>
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <a routerLink="/main/leasePoint">租赁点信息</a>
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <a routerLink="/main/bicycleRepair">车辆维修</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>

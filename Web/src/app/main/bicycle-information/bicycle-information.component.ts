@@ -3,20 +3,18 @@ import {Component, OnInit} from '@angular/core';
 declare var BMap: any;
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.scss']
+  selector: 'app-bicycle-information',
+  templateUrl: './bicycle-information.component.html',
+  styleUrls: ['./bicycle-information.component.scss']
 })
-export class WelcomeComponent implements OnInit {
-  location: any;
+export class BicycleInformationComponent implements OnInit {
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getMap();
   }
-
 
 // 地图要放到函数里。
   getMap() {
@@ -42,7 +40,7 @@ export class WelcomeComponent implements OnInit {
       var mk = new BMap.Marker(r.point);
       map.addOverlay(mk);
       map.panTo(r.point);
-      alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+      // alert('您的位置：' + r.point.lng + ',' + r.point.lat);
     });
   }
 }
